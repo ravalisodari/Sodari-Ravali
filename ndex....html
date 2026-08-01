@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sodari Ravali — Data Analyst & Aspiring Security Analyst</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0E14; --panel:#10151F; --panel-2:#0D1119; --line:#1F2733;
+  --ink:#E7EAEE; --dim:#8892A0; --violet:#8B7FE8; --teal:#35D4B8; --amber:#E8A33D; --red:#E14B4B; --cyan:#4FC3E8;
+  --serif:'Fraunces',serif; --mono:'JetBrains Mono',monospace; --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.6;}
+.wrap{max-width:980px; margin:0 auto; padding:0 32px;}
+
+nav{position:sticky; top:0; background:rgba(10,14,20,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); z-index:10;}
+.nav-inner{max-width:980px; margin:0 auto; padding:18px 32px; display:flex; justify-content:space-between; align-items:center;}
+.logo{font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:.03em;}
+.logo span{color:var(--teal);}
+.nav-links{display:flex; gap:26px; font-family:var(--mono); font-size:12.5px;}
+.nav-links a{color:var(--dim); text-decoration:none;}
+.nav-links a:hover{color:var(--ink);}
+
+.hero{padding:90px 0 60px; border-bottom:1px solid var(--line);}
+.eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--violet); margin-bottom:16px;}
+h1{font-family:var(--serif); font-weight:700; font-size:50px; line-height:1.08; letter-spacing:-.01em; max-width:700px;}
+h1 .accent{color:var(--teal);}
+.hero-sub{color:var(--dim); font-size:15.5px; max-width:600px; margin-top:20px; line-height:1.7;}
+.toggle{display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;}
+.toggle-btn{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:700;
+  padding:10px 18px; border:1px solid var(--line); background:transparent; color:var(--dim); cursor:pointer; transition:.15s;
+}
+.toggle-btn.active{border-color:var(--teal); color:var(--teal); background:rgba(53,212,184,.07);}
+.hero-links{display:flex; gap:14px; margin-top:26px; flex-wrap:wrap;}
+.btn{font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:13px 24px; text-decoration:none;}
+.btn.primary{background:var(--violet); color:#0A0714;}
+.btn.ghost{border:1px solid var(--line); color:var(--ink);}
+.btn:hover{opacity:.85;}
+
+.section{padding:64px 0; border-bottom:1px solid var(--line);}
+.section-title{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); margin-bottom:8px;}
+.section h2{font-family:var(--serif); font-size:30px; font-weight:600; margin-bottom:32px;}
+
+.projects{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+.card{background:var(--panel); border:1px solid var(--line); padding:26px; display:flex; flex-direction:column; transition:.15s;}
+.card:hover{border-color:var(--violet); transform:translateY(-2px);}
+.card-tag{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:12px;}
+.card h3{font-family:var(--serif); font-size:20px; font-weight:600; margin-bottom:8px;}
+.card p{color:var(--dim); font-size:13px; line-height:1.6; flex:1;}
+.card-stack{display:flex; flex-wrap:wrap; gap:6px; margin:14px 0;}
+.chip{font-family:var(--mono); font-size:10px; color:var(--dim); border:1px solid var(--line); padding:3px 8px;}
+.card-links{display:flex; gap:16px; margin-top:6px; font-family:var(--mono); font-size:12px;}
+.card-links a{color:var(--violet); text-decoration:none;}
+.card-links a:hover{text-decoration:underline;}
+
+.timeline{display:flex; flex-direction:column; gap:0;}
+.tl-item{display:grid; grid-template-columns:170px 1fr; gap:24px; padding:22px 0; border-bottom:1px solid var(--panel-2);}
+.tl-item:last-child{border-bottom:none;}
+.tl-date{font-family:var(--mono); font-size:12px; color:var(--dim); padding-top:2px;}
+.tl-role{font-family:var(--serif); font-size:18px; font-weight:600; margin-bottom:4px;}
+.tl-org{font-family:var(--mono); font-size:12px; color:var(--teal); margin-bottom:10px;}
+.tl-item ul{padding-left:18px; color:var(--dim); font-size:13.5px; line-height:1.75;}
+
+.skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+.skill-cat{background:var(--panel); padding:22px;}
+.skill-cat .label{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--amber); margin-bottom:12px;}
+.skill-cat ul{list-style:none; font-size:13.5px; color:var(--dim); line-height:1.9;}
+
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+.info-block h4{font-family:var(--serif); font-size:16px; margin-bottom:14px; color:var(--ink);}
+.edu-item{margin-bottom:16px;}
+.edu-item .deg{font-size:14px; font-weight:600;}
+.edu-item .school{font-family:var(--mono); font-size:12px; color:var(--dim); margin-top:2px;}
+.cert-item{font-size:13.5px; color:var(--dim); padding:7px 0; border-bottom:1px solid var(--panel-2);}
+.cert-item:last-child{border:none;}
+.cert-item strong{color:var(--ink);}
+
+.contact-links{display:flex; gap:16px; margin-top:20px; flex-wrap:wrap;}
+.contact-links a{font-family:var(--mono); font-size:13px; color:var(--ink); text-decoration:none; border:1px solid var(--line); padding:11px 20px;}
+.contact-links a:hover{border-color:var(--teal); color:var(--teal);}
+
+footer{padding:32px 0; font-family:var(--mono); font-size:11px; color:var(--dim); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+@media (max-width:760px){
+  h1{font-size:34px;}
+  .projects, .two-col{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr;}
+  .tl-item{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .wrap{padding:0 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">SODARI<span>RAVALI</span></div>
+    <div class="nav-links">
+      <a href="#work">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow" id="eyebrowText">Data Analyst · Aspiring Security Analyst</div>
+    <h1 id="heroHeadline">I turn raw data into decisions — and I build the <span class="accent">detection & ML logic</span> behind them by hand.</h1>
+    <p class="hero-sub" id="heroSub">B.Tech Computer Science &amp; Data Science graduate (CGPA 9.12/10) with hands-on experience in data analysis, SQL, dashboarding, and security-conscious system design. I like understanding what's happening under the hood — whether that's a churn model, a retrieval system, or an anomaly detector — instead of stopping at the library call.</p>
+
+    <div class="toggle">
+      <button class="toggle-btn active" data-mode="both">Both</button>
+      <button class="toggle-btn" data-mode="analyst">Data Analyst</button>
+      <button class="toggle-btn" data-mode="security">Security Analyst</button>
+    </div>
+
+    <div class="hero-links">
+      <a href="#work" class="btn primary">View Projects</a>
+      <a href="https://github.com/YOUR_USERNAME" class="btn ghost">GitHub ↗</a>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="section-title">Selected Work</div>
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <div class="card" data-cat="security">
+        <div class="card-tag">Security / Anomaly Detection</div>
+        <h3>Sentinel — SOC Log Anomaly Detection</h3>
+        <p>A rolling z-score anomaly detector built from scratch for authentication logs — no ML library, no SIEM. Flags brute-force bursts, off-hours access, and abnormal login volume.</p>
+        <div class="card-stack"><span class="chip">Vanilla JS</span><span class="chip">Statistical Detection</span></div>
+        <div class="card-links">
+          <a href="./soc-anomaly-detection/index.html">Live Demo →</a>
+          <a href="https://github.com/YOUR_USERNAME/ai-portfolio/tree/main/soc-anomaly-detection">Code →</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="analyst">
+        <div class="card-tag">Machine Learning</div>
+        <h3>Churn & Revenue Intelligence Dashboard</h3>
+        <p>A logistic regression churn model trained live in-browser via hand-written gradient descent. Scores B2B accounts, forecasts revenue, flags at-risk MRR.</p>
+        <div class="card-stack"><span class="chip">Vanilla JS</span><span class="chip">Gradient Descent</span></div>
+        <div class="card-links">
+          <a href="./churn-revenue-dashboard/index.html">Live Demo →</a>
+          <a href="https://github.com/YOUR_USERNAME/ai-portfolio/tree/main/churn-revenue-dashboard">Code →</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="analyst">
+        <div class="card-tag">NLP / Retrieval</div>
+        <h3>Docent — RAG Assistant</h3>
+        <p>A retrieval-augmented chatbot with hand-implemented TF-IDF vectorization and cosine similarity search over a 23-document knowledge base.</p>
+        <div class="card-stack"><span class="chip">Vanilla JS</span><span class="chip">TF-IDF</span></div>
+        <div class="card-links">
+          <a href="./docent-rag-assistant/index.html">Live Demo →</a>
+          <a href="https://github.com/YOUR_USERNAME/ai-portfolio/tree/main/docent-rag-assistant">Code →</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="security">
+        <div class="card-tag">Security / Blockchain</div>
+        <h3>Crypto Pay — Blockchain Payment System</h3>
+        <p>A decentralized payment system using blockchain architecture for tamper-resistant transactions, with custom encryption/decryption functions and a Flask REST API backend.</p>
+        <div class="card-stack"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">Cryptography</span></div>
+        <div class="card-links"><a href="https://github.com/YOUR_USERNAME">Code →</a></div>
+      </div>
+
+      <div class="card" data-cat="analyst">
+        <div class="card-tag">Data Science</div>
+        <h3>Time-Series Forecasting for Stock Markets</h3>
+        <p>A forecasting pipeline analyzing and predicting AAPL stock prices using historical market data, applying data cleaning, modeling, and visualization end-to-end.</p>
+        <div class="card-stack"><span class="chip">Python</span><span class="chip">Scikit-Learn</span><span class="chip">Pandas</span></div>
+        <div class="card-links"><a href="https://github.com/YOUR_USERNAME">Code →</a></div>
+      </div>
+
+      <div class="card" data-cat="security">
+        <div class="card-tag">Computer Vision</div>
+        <h3>AI Driver Drowsiness Detection</h3>
+        <p>A real-time monitoring system using computer vision and Eye Aspect Ratio (EAR)-based detection with an instant alert mechanism — a real-time monitoring pattern relevant to SOC alerting workflows.</p>
+        <div class="card-stack"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">MediaPipe</span></div>
+        <div class="card-links"><a href="https://github.com/YOUR_USERNAME">Code →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="section-title">Track Record</div>
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Jun 2026</div>
+        <div>
+          <div class="tl-role">Software Engineering Job Simulation</div>
+          <div class="tl-org">Wells Fargo (Forage)</div>
+          <ul>
+            <li>Analyzed business and technical requirements for a system managing financial portfolios, translating them into structured, security-conscious system design</li>
+            <li>Practiced identifying data-handling and system-design risk points relevant to financial data platforms</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Oct – Dec 2025</div>
+        <div>
+          <div class="tl-role">Data Science Intern / Trainee</div>
+          <div class="tl-org">UHW (Offline)</div>
+          <ul>
+            <li>Completed an intensive 3-month training program in Python, ML algorithms, and data analysis</li>
+            <li>Developed and deployed ML models on real-world datasets using Pandas, NumPy, and Scikit-Learn</li>
+            <li>Debugged code and optimized algorithms in a collaborative lab environment</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Apr – May 2025</div>
+        <div>
+          <div class="tl-role">Data Science & Analytics Intern</div>
+          <div class="tl-org">Zidio Development (Online)</div>
+          <ul>
+            <li>Analyzed real-world market data (AAPL) to identify trends, patterns, and anomalies</li>
+            <li>Built predictive models to forecast asset performance</li>
+            <li>Communicated data-driven recommendations to support decision-making</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-title">Toolbox</div>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="label">Data Analysis</div>
+        <ul><li>SQL</li><li>Python (Pandas, NumPy, Matplotlib)</li><li>Excel (Pivot Tables, XLOOKUP)</li><li>R</li></ul>
+      </div>
+      <div class="skill-cat">
+        <div class="label">Visualization & BI</div>
+        <ul><li>Power BI</li><li>Tableau</li><li>Dashboard design</li></ul>
+      </div>
+      <div class="skill-cat">
+        <div class="label">Security Fundamentals</div>
+        <ul><li>Cryptography & encryption</li><li>TCP/IP, DNS, HTTP/HTTPS</li><li>Anomaly / threat detection</li><li>Linux fundamentals</li></ul>
+      </div>
+      <div class="skill-cat">
+        <div class="label">Programming</div>
+        <ul><li>Python</li><li>Java</li><li>C</li><li>JavaScript</li></ul>
+      </div>
+      <div class="skill-cat">
+        <div class="label">ML / AI</div>
+        <ul><li>Scikit-Learn</li><li>Gradient descent (from scratch)</li><li>Statistical anomaly detection</li><li>TF-IDF / retrieval</li></ul>
+      </div>
+      <div class="skill-cat">
+        <div class="label">Tools & Databases</div>
+        <ul><li>MySQL</li><li>Git / GitHub</li><li>Flask REST APIs</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="section-title">Background</div>
+    <h2>Education & Certifications</h2>
+    <div class="two-col">
+      <div class="info-block">
+        <h4>Education</h4>
+        <div class="edu-item">
+          <div class="deg">B.Tech, Computer Science & Data Science</div>
+          <div class="school">Kakatiya University College of Engineering and Technology, Warangal, Telangana · CGPA 9.12/10.00 · Expected 2026</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">Intermediate (MPC)</div>
+          <div class="school">TSWREIS Junior College, Bhupalpally, Telangana · 2020–2022 · 91%</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">SSC</div>
+          <div class="school">TSWREIS Bhupalpally for Girls · 2020 · CGPA 10.00/10.00</div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h4>Certifications</h4>
+        <div class="cert-item"><strong>Data Science Foundation</strong> — UHW, 2025</div>
+        <div class="cert-item"><strong>Data Science & Analytics</strong> — Zidio, 2025</div>
+        <div class="cert-item"><strong>Computer Vision Workshop</strong> (Driver Drowsiness Detection) — Innomatics Research Labs, 2026</div>
+        <div class="cert-item"><strong>Python Programming</strong> — 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact" style="border-bottom:none;">
+    <div class="section-title">Get in touch</div>
+    <h2>Contact</h2>
+    <p style="color:var(--dim); font-size:14.5px; max-width:520px;">Open to Data Analyst and Security Analyst / SOC Analyst roles. Always happy to talk data, detection systems, or ML fundamentals.</p>
+    <div class="contact-links">
+      <a href="mailto:ravalisodari9@gmail.com">Email ↗</a>
+      <a href="https://linkedin.com/in/YOUR_LINKEDIN">LinkedIn ↗</a>
+      <a href="https://github.com/YOUR_USERNAME">GitHub ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sodari Ravali · Warangal, Telangana</span>
+    <span>Built from scratch — no template</span>
+  </footer>
+
+</div>
+
+<script>
+const modes = {
+  both: {
+    eyebrow: "Data Analyst · Aspiring Security Analyst",
+    headline: 'I turn raw data into decisions — and I build the <span class="accent">detection & ML logic</span> behind them by hand.',
+    sub: "B.Tech Computer Science & Data Science graduate (CGPA 9.12/10) with hands-on experience in data analysis, SQL, dashboarding, and security-conscious system design. I like understanding what's happening under the hood — whether that's a churn model, a retrieval system, or an anomaly detector — instead of stopping at the library call."
+  },
+  analyst: {
+    eyebrow: "Data Analyst",
+    headline: 'I turn raw data into <span class="accent">clear, actionable insight</span> — dashboards, forecasts, and models people actually use.',
+    sub: "B.Tech Computer Science & Data Science graduate (CGPA 9.12/10) skilled in SQL, Python (Pandas, NumPy), Power BI, and Tableau. I've built forecasting pipelines and predictive models across internships, always translating raw data into decisions stakeholders can act on."
+  },
+  security: {
+    eyebrow: "Aspiring Security Analyst / SOC Analyst",
+    headline: 'I build <span class="accent">detection systems and secure architectures</span> — and understand the math underneath them.',
+    sub: "B.Tech graduate with hands-on experience in cryptography, secure API development, network fundamentals, and anomaly detection. I've built a blockchain-based payment system with custom encryption logic and a from-scratch SOC log anomaly detector — eager to bring a security-first mindset to a SOC Analyst role."
+  }
+};
+
+const buttons = document.querySelectorAll('.toggle-btn');
+const cards = document.querySelectorAll('.card');
+
+buttons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    buttons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const mode = btn.dataset.mode;
+    document.getElementById('eyebrowText').textContent = modes[mode].eyebrow;
+    document.getElementById('heroHeadline').innerHTML = modes[mode].headline;
+    document.getElementById('heroSub').textContent = modes[mode].sub;
+
+    cards.forEach(c=>{
+      if(mode==='both'){ c.style.display='flex'; }
+      else{ c.style.display = c.dataset.cat===mode ? 'flex' : 'none'; }
+    });
+  });
+});
+</script>
+</body>
+</html>
